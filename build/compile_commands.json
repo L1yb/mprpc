@@ -1,0 +1,57 @@
+[
+{
+  "directory": "/home/liyb/mprpc/build/src",
+  "command": "/usr/bin/g++   -I/home/liyb/mprpc/src/include -I/home/liyb/mprpc/example  -g   -o CMakeFiles/mprpc.dir/mprpcapplication.cc.o -c /home/liyb/mprpc/src/mprpcapplication.cc",
+  "file": "/home/liyb/mprpc/src/mprpcapplication.cc"
+},
+{
+  "directory": "/home/liyb/mprpc/build/src",
+  "command": "/usr/bin/g++   -I/home/liyb/mprpc/src/include -I/home/liyb/mprpc/example  -g   -o CMakeFiles/mprpc.dir/rpcprovider.cc.o -c /home/liyb/mprpc/src/rpcprovider.cc",
+  "file": "/home/liyb/mprpc/src/rpcprovider.cc"
+},
+{
+  "directory": "/home/liyb/mprpc/build/src",
+  "command": "/usr/bin/g++   -I/home/liyb/mprpc/src/include -I/home/liyb/mprpc/example  -g   -o CMakeFiles/mprpc.dir/mprpcconfig.cc.o -c /home/liyb/mprpc/src/mprpcconfig.cc",
+  "file": "/home/liyb/mprpc/src/mprpcconfig.cc"
+},
+{
+  "directory": "/home/liyb/mprpc/build/src",
+  "command": "/usr/bin/g++   -I/home/liyb/mprpc/src/include -I/home/liyb/mprpc/example  -g   -o CMakeFiles/mprpc.dir/rpcheader.pb.cc.o -c /home/liyb/mprpc/src/rpcheader.pb.cc",
+  "file": "/home/liyb/mprpc/src/rpcheader.pb.cc"
+},
+{
+  "directory": "/home/liyb/mprpc/build/src",
+  "command": "/usr/bin/g++   -I/home/liyb/mprpc/src/include -I/home/liyb/mprpc/example  -g   -o CMakeFiles/mprpc.dir/mprpcchannel.cc.o -c /home/liyb/mprpc/src/mprpcchannel.cc",
+  "file": "/home/liyb/mprpc/src/mprpcchannel.cc"
+},
+{
+  "directory": "/home/liyb/mprpc/build/src",
+  "command": "/usr/bin/g++   -I/home/liyb/mprpc/src/include -I/home/liyb/mprpc/example  -g   -o CMakeFiles/mprpc.dir/mprpccontroller.cc.o -c /home/liyb/mprpc/src/mprpccontroller.cc",
+  "file": "/home/liyb/mprpc/src/mprpccontroller.cc"
+},
+{
+  "directory": "/home/liyb/mprpc/build/src",
+  "command": "/usr/bin/g++   -I/home/liyb/mprpc/src/include -I/home/liyb/mprpc/example  -g   -o CMakeFiles/mprpc.dir/logger.cc.o -c /home/liyb/mprpc/src/logger.cc",
+  "file": "/home/liyb/mprpc/src/logger.cc"
+},
+{
+  "directory": "/home/liyb/mprpc/build/example/callee",
+  "command": "/usr/bin/g++   -I/home/liyb/mprpc/src/include -I/home/liyb/mprpc/example  -g   -o CMakeFiles/provider.dir/friendservice.cc.o -c /home/liyb/mprpc/example/callee/friendservice.cc",
+  "file": "/home/liyb/mprpc/example/callee/friendservice.cc"
+},
+{
+  "directory": "/home/liyb/mprpc/build/example/callee",
+  "command": "/usr/bin/g++   -I/home/liyb/mprpc/src/include -I/home/liyb/mprpc/example  -g   -o CMakeFiles/provider.dir/__/friend.pb.cc.o -c /home/liyb/mprpc/example/friend.pb.cc",
+  "file": "/home/liyb/mprpc/example/friend.pb.cc"
+},
+{
+  "directory": "/home/liyb/mprpc/build/example/caller",
+  "command": "/usr/bin/g++   -I/home/liyb/mprpc/src/include -I/home/liyb/mprpc/example  -g   -o CMakeFiles/consumer.dir/callfriendservice.cc.o -c /home/liyb/mprpc/example/caller/callfriendservice.cc",
+  "file": "/home/liyb/mprpc/example/caller/callfriendservice.cc"
+},
+{
+  "directory": "/home/liyb/mprpc/build/example/caller",
+  "command": "/usr/bin/g++   -I/home/liyb/mprpc/src/include -I/home/liyb/mprpc/example  -g   -o CMakeFiles/consumer.dir/__/friend.pb.cc.o -c /home/liyb/mprpc/example/friend.pb.cc",
+  "file": "/home/liyb/mprpc/example/friend.pb.cc"
+}
+]
