@@ -12,8 +12,8 @@ public:
     {
         std::cout << "do local service FriendService. getFriendList method" << std::endl;
         std::vector<std::string> friendList;
-        friendList.push_back("li yong bo");
-        friendList.push_back("Azatiguli");
+        friendList.push_back("hello hello");
+        friendList.push_back("world world");
         return friendList;
     }
 
@@ -41,8 +41,8 @@ public:
 
 int main(int argc, char** argv)
 {   
-    LOG_INFO("first log message.");
-    LOG_ERR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
+    // LOG_INFO("first log message.");
+    // LOG_ERR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
     //框架初始化
     MprpcApplication::Init(argc, argv);
     //创建节点

@@ -406,8 +406,22 @@ RpcProvider 使用epoll和多线程 因此会有多个线程写日志信息， �
 
 ### linux 里的线程安全方法
 
+## zookeeper
 
+### zk数据是怎么组织的
 
+https://www.cnblogs.com/xinyonghu/p/11031729.html
+心跳消息
+session会话
+### zk的watcher机制
+回调机制，检测node节点的变化
+
+### 常用命令
+ls get create set delete
+### 原生api开发包的三个缺点
+1. ~~不会自动发送心跳信息~~ 源码上会在1/3的TImeout事件发送ping心跳消息
+2. 设置watcher 监听是一次性的，只能监听一次，每次触发以后要重新设置
+3. znode节点只是存储简单的byte字节数组，如果存储对象，需要自己转换对象成字节数组
 
 ## 基类、派生类、（纯）虚函数
 类的继承构成一种层次关系，在根部的是**基类**，直接或者间接从基类继承来的叫**派生类**

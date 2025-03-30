@@ -10,8 +10,10 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 #设置项目编译头文件搜索路径
+find_package(Protobuf REQUIRED)
 include_directories(${PROJECT_SOURCE_DIR}/src/include)
 include_directories(${PROJECT_SOURCE_DIR}/example)
+include_directories(${Protobuf_INCLUDE_DIRS})
 
 # 设置项目库文件搜索路径
 link_directories(${PROJECT_SOURCE_DIR}/lib)

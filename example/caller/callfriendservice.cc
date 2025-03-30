@@ -1,7 +1,7 @@
 #include <iostream>
 #include "mprpcapplication.h"
 #include "friend.pb.h"
-
+#include "logger.h"
 
 int main(int argc, char** argv)
 {
@@ -12,7 +12,7 @@ int main(int argc, char** argv)
     
     // rpc方法请求参数
     fixbug::GetFriendListRequest get_fri_request;
-    get_fri_request.set_id(2000);
+    get_fri_request.set_id(1747);
 
     // rpc方法的回应
     fixbug::GetFriendListResponse get_fri_response;
@@ -30,7 +30,8 @@ int main(int argc, char** argv)
     {
         if (get_fri_response.rscode().err_code() == 0)
         {
-            std::cout << "rpc GetFriendList response success." << std::endl;
+            // std::cout << "rpc GetFriendList response success." << std::endl;
+            LOG_INFO("rpc GetFriendList response success." );
             int size = get_fri_response.friends_size();
             for (int i = 0; i < size; i++)
             {

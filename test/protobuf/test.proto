@@ -40,7 +40,6 @@ message GetFriendListResponse {
     ResponseMsg rmsg = 1;
     repeated User friend_list = 2; //定义列表类型 repeated
 }
-
 //描述rpc方法
 service UserServiceRpc
 {

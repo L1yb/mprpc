@@ -1,0 +1,12 @@
+15:18:31 => [error]first log message.
+15:18:31 => [error]/home/liyb/mprpc/example/callee/friendservice.cc:main:45
+15:18:31 => [info]service name: FriendServiceRpc
+15:18:31 => [info]method name: GetFriendList
+18:55:10 => [error]first log message.
+18:55:24 => [error]first log message.
+18:55:24 => [error]/home/liyb/mprpc/example/callee/friendservice.cc:main:45
+18:55:24 => [info]service name: FriendServiceRpc
+18:56:46 => [error]first log message.
+18:56:46 => [error]/home/liyb/mprpc/example/callee/friendservice.cc:main:45
+18:56:46 => [info]service name: FriendServiceRpc
+18:56:46 => [info]method name: GetFriendList

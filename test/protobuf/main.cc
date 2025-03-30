@@ -1,6 +1,7 @@
-#include "test.pb.h"
+// -D_GLIBCXX_USE_CXX11_ABI=0
 #include <iostream>
 #include <string>
+#include "test.pb.h"
 using namespace fixbug;
 
 int main() {
@@ -22,16 +23,17 @@ int main() {
     user2->set_age(1);
     user2->set_sex(User::MAN);
     std::cout << gfrsp.friend_list_size() << std::endl;
-    std::cout << gfrsp.friend_list(1).age() << std::endl;
+    std::cout << gfrsp.friend_list(0).age() << std::endl;
     User* cur = gfrsp.mutable_friend_list(0);
     cur->set_age(10);
     std::cout << cur->name() << cur->age() << std::endl;
+    return 0;
 }
 
 
 int main1() {
     LoginRequest lr;
-    lr.set_name("ali");
+    lr.set_name("li");
     lr.set_pwd("123456");
     //序列化
     std::string send_str;

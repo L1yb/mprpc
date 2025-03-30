@@ -2,7 +2,7 @@
 #include "mprpcapplication.h"
 #include "rpcheader.pb.h"
 #include "logger.h"
-
+#include "zookeeperutil.h"
 /*
 生成一个表，记录哪个服务对象调用什么方法
 service_name => service* 服务对象
@@ -57,7 +57,26 @@ void RpcProvider::Run()
     // 设置muduo库线程数
     server.setThreadNum(4);
 
-    std::cout << "RpcProvider start service at ip:" << ip << " port:" << port << std::endl;
+    // 把rpc节点上要发布的服务全部注册到zk上， 让rpc和client可以在zk上发现服务
+    ZkClient zkCli;
+    zkCli.Start();
+    for (auto &sp : m_serviceMap)
+    {
+        std::string service_path = '/' + sp.first;
+        zkCli.Create(service_path.c_str(), nullptr, 0);
+        for (auto &mp : sp.second.m_methodMap)
+        {
+            std::string method_path = service_path + '/' + mp.first;
+            char method_path_data[128] = {0};
+            sprintf(method_path_data, "%s:%d", ip.c_str(), port);
+            // ZOO_EPHEMERAL表示是临时性节点
+            zkCli.Create(method_path.c_str(), method_path_data, strlen(method_path_data), ZOO_EPHEMERAL);
+        }
+    }
+
+
+    // std::cout << "RpcProvider start service at ip:" << ip << " port:" << port << std::endl;
+    LOG_INFO("RpcProvider start service at ip:%s port:%d", ip.c_str(), port);
     // 启动网络服务
     server.start();
     m_eventloop.loop();
@@ -108,7 +127,8 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr& conn, muduo::net
     }
     else
     {
-        std::cout << "rpc_header_str:" << rpc_header_str << " parse error" << std::endl;
+        // std::cout << "rpc_header_str:" << rpc_header_str << " parse error" << std::endl;
+        LOG_INFO("rpc_header_str: %s parse error", rpc_header_str.c_str())
         return;
     }
     std::string args_str = recv_buf.substr(4 + header_size, args_size);
@@ -125,7 +145,8 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr& conn, muduo::net
     auto it = m_serviceMap.find(service_name);
     if (it == m_serviceMap.end())
     {
-        std::cout << service_name << " is not exist." << std::endl;
+        // std::cout << service_name << " is not exist." << std::endl;
+        LOG_INFO("%s is not exist.", service_name.c_str());
         return;
     }
 
@@ -134,7 +155,8 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr& conn, muduo::net
     auto mit = it->second.m_methodMap.find(method_name);
     if (mit == it->second.m_methodMap.end())
     {
-        std::cout << service_name << ":" << method_name <<" is not exist." << std::endl;
+        // std::cout << service_name << ":" << method_name <<" is not exist." << std::endl;
+        LOG_INFO("%s:%s is not exist.", service_name.c_str(), method_name.c_str());
         return;
     }
 
@@ -144,7 +166,8 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr& conn, muduo::net
     google::protobuf::Message* request = service->GetRequestPrototype(method).New();
     if (!request->ParseFromString(args_str))
     {
-        std::cout << "request prase error. content:" << args_str << std::endl;
+        // std::cout << "request prase error. content:" << args_str << std::endl;
+        LOG_INFO("request prase error. content:%s", args_str.c_str());
         return;
     }
     google::protobuf::Message* response = service->GetResponsePrototype(method).New();
@@ -168,7 +191,8 @@ void  RpcProvider::SendRpcResponse(const muduo::net::TcpConnectionPtr& conn, goo
     }
     else
     {
-        std::cout << "Serialize response_str error." << std::endl;
+        // std::cout << "Serialize response_str error." << std::endl;
+        LOG_INFO("Serialize response_str error.");
     }
     // 模拟http 短连接服务，由rpcprovider主动断开连接
     conn->shutdown();
