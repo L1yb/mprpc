@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/liyb/mprpc/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,73 +111,73 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-example/callee/CMakeFiles/provider.dir/rule:
-	cd /home/liyb/mprpc/build && $(MAKE) -f CMakeFiles/Makefile2 example/callee/CMakeFiles/provider.dir/rule
-.PHONY : example/callee/CMakeFiles/provider.dir/rule
+example/callee/CMakeFiles/providerall.dir/rule:
+	cd /home/liyb/mprpc/build && $(MAKE) -f CMakeFiles/Makefile2 example/callee/CMakeFiles/providerall.dir/rule
+.PHONY : example/callee/CMakeFiles/providerall.dir/rule
 
 # Convenience name for target.
-provider: example/callee/CMakeFiles/provider.dir/rule
+providerall: example/callee/CMakeFiles/providerall.dir/rule
 
-.PHONY : provider
+.PHONY : providerall
 
 # fast build rule for target.
-provider/fast:
-	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/provider.dir/build.make example/callee/CMakeFiles/provider.dir/build
-.PHONY : provider/fast
+providerall/fast:
+	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/providerall.dir/build.make example/callee/CMakeFiles/providerall.dir/build
+.PHONY : providerall/fast
 
-__/friend.pb.o: __/friend.pb.cc.o
+__/all.pb.o: __/all.pb.cc.o
 
-.PHONY : __/friend.pb.o
-
-# target to build an object file
-__/friend.pb.cc.o:
-	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/provider.dir/build.make example/callee/CMakeFiles/provider.dir/__/friend.pb.cc.o
-.PHONY : __/friend.pb.cc.o
-
-__/friend.pb.i: __/friend.pb.cc.i
-
-.PHONY : __/friend.pb.i
-
-# target to preprocess a source file
-__/friend.pb.cc.i:
-	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/provider.dir/build.make example/callee/CMakeFiles/provider.dir/__/friend.pb.cc.i
-.PHONY : __/friend.pb.cc.i
-
-__/friend.pb.s: __/friend.pb.cc.s
-
-.PHONY : __/friend.pb.s
-
-# target to generate assembly for a file
-__/friend.pb.cc.s:
-	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/provider.dir/build.make example/callee/CMakeFiles/provider.dir/__/friend.pb.cc.s
-.PHONY : __/friend.pb.cc.s
-
-friendservice.o: friendservice.cc.o
-
-.PHONY : friendservice.o
+.PHONY : __/all.pb.o
 
 # target to build an object file
-friendservice.cc.o:
-	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/provider.dir/build.make example/callee/CMakeFiles/provider.dir/friendservice.cc.o
-.PHONY : friendservice.cc.o
+__/all.pb.cc.o:
+	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/providerall.dir/build.make example/callee/CMakeFiles/providerall.dir/__/all.pb.cc.o
+.PHONY : __/all.pb.cc.o
 
-friendservice.i: friendservice.cc.i
+__/all.pb.i: __/all.pb.cc.i
 
-.PHONY : friendservice.i
+.PHONY : __/all.pb.i
 
 # target to preprocess a source file
-friendservice.cc.i:
-	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/provider.dir/build.make example/callee/CMakeFiles/provider.dir/friendservice.cc.i
-.PHONY : friendservice.cc.i
+__/all.pb.cc.i:
+	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/providerall.dir/build.make example/callee/CMakeFiles/providerall.dir/__/all.pb.cc.i
+.PHONY : __/all.pb.cc.i
 
-friendservice.s: friendservice.cc.s
+__/all.pb.s: __/all.pb.cc.s
 
-.PHONY : friendservice.s
+.PHONY : __/all.pb.s
 
 # target to generate assembly for a file
-friendservice.cc.s:
-	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/provider.dir/build.make example/callee/CMakeFiles/provider.dir/friendservice.cc.s
-.PHONY : friendservice.cc.s
+__/all.pb.cc.s:
+	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/providerall.dir/build.make example/callee/CMakeFiles/providerall.dir/__/all.pb.cc.s
+.PHONY : __/all.pb.cc.s
+
+allservice.o: allservice.cc.o
+
+.PHONY : allservice.o
+
+# target to build an object file
+allservice.cc.o:
+	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/providerall.dir/build.make example/callee/CMakeFiles/providerall.dir/allservice.cc.o
+.PHONY : allservice.cc.o
+
+allservice.i: allservice.cc.i
+
+.PHONY : allservice.i
+
+# target to preprocess a source file
+allservice.cc.i:
+	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/providerall.dir/build.make example/callee/CMakeFiles/providerall.dir/allservice.cc.i
+.PHONY : allservice.cc.i
+
+allservice.s: allservice.cc.s
+
+.PHONY : allservice.s
+
+# target to generate assembly for a file
+allservice.cc.s:
+	cd /home/liyb/mprpc/build && $(MAKE) -f example/callee/CMakeFiles/providerall.dir/build.make example/callee/CMakeFiles/providerall.dir/allservice.cc.s
+.PHONY : allservice.cc.s
 
 # Help Target
 help:
@@ -185,15 +185,15 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... provider"
-	@echo "... __/friend.pb.o"
-	@echo "... __/friend.pb.i"
-	@echo "... __/friend.pb.s"
-	@echo "... friendservice.o"
-	@echo "... friendservice.i"
-	@echo "... friendservice.s"
+	@echo "... rebuild_cache"
+	@echo "... providerall"
+	@echo "... __/all.pb.o"
+	@echo "... __/all.pb.i"
+	@echo "... __/all.pb.s"
+	@echo "... allservice.o"
+	@echo "... allservice.i"
+	@echo "... allservice.s"
 .PHONY : help
 
 

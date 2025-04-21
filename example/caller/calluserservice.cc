@@ -1,6 +1,7 @@
 #include <iostream>
 #include "mprpcapplication.h"
-#include "user.pb.h"
+#include "all.pb.h"
+#include "logger.h"
 int main(int argc, char** argv)
 {
     // 框架初始化
@@ -17,18 +18,27 @@ int main(int argc, char** argv)
     fixbug::LoginResponse response;
 
     // 代理对象发起rpc方法的调用 同步rpc调用过程 rpcchannel->callmethod
-    stub.Login(nullptr, &request, &response, nullptr);
+    MprpcController controller;
+    stub.Login(&controller, &request, &response, nullptr);
 
     // 一次调用完成， 读调用结果
-    if (response.rscode().err_code() == 0)
+    if (controller.Failed())
     {
-        std::cout << "rpc login response success: " << response.success() << std::endl;
+        LOG_INFO("rpc login response error: %s", controller.ErrorText().c_str());
     }
-    else
+    else 
     {
-        std::cout << "rpc login response error: " << response.rscode().err_msg() << std::endl;
-
+        if (response.rscode().err_code() == 0)
+        {
+            LOG_INFO("rpc login response success: %d", response.success());
+            std::cout << "rpc login response success: " << response.success() << std::endl;
+        }
+        else
+        {
+            controller.SetFailed("rpc login response error");
+        }
     }
+    
     
     // 演示调用rpc方法的register
     fixbug::RegisterRequest register_req;
@@ -36,17 +46,25 @@ int main(int argc, char** argv)
     register_req.set_name("mprpc");
     register_req.set_pwd("123123");
     fixbug::RegisterResponse register_rsp;
-    stub.Register(nullptr, &register_req, &register_rsp, nullptr);
-    if (register_rsp.rscode().err_code() == 0)
+    stub.Register(&controller, &register_req, &register_rsp, nullptr);
+    
+    if (controller.Failed())
     {
-        std::cout << "rpc register register_rsp success: " << register_rsp.success() << std::endl;
+        LOG_INFO("rpc register register_rsp error: %s", controller.ErrorText().c_str());
     }
-    else
+    else 
     {
-        std::cout << "rpc register register_rsp error: " << register_rsp.rscode().err_msg() << std::endl;
-
+        if (register_rsp.rscode().err_code() == 0)
+        {
+            LOG_INFO("rpc register register_rsp success: %d", register_rsp.success());
+            std::cout << "rpc register register_rsp success: " << register_rsp.success() << std::endl;
+        }
+        else
+        {
+            controller.SetFailed("rpc register register_rsp error");
+        }
     }
-
+    
 
     return 0;
 }

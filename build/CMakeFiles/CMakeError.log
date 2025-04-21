@@ -1,21 +1,21 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /home/liyb/mprpc/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_a19ed/fast && /usr/bin/make -f CMakeFiles/cmTC_a19ed.dir/build.make CMakeFiles/cmTC_a19ed.dir/build
+Run Build Command(s):/usr/bin/make cmTC_baa31/fast && /usr/bin/make -f CMakeFiles/cmTC_baa31.dir/build.make CMakeFiles/cmTC_baa31.dir/build
 make[1]: 进入目录“/home/liyb/mprpc/build/CMakeFiles/CMakeTmp”
-Building C object CMakeFiles/cmTC_a19ed.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_a19ed.dir/src.c.o   -c /home/liyb/mprpc/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_a19ed
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a19ed.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_a19ed.dir/src.c.o  -o cmTC_a19ed 
-/usr/bin/ld: CMakeFiles/cmTC_a19ed.dir/src.c.o: in function `main':
+Building C object CMakeFiles/cmTC_baa31.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_baa31.dir/src.c.o   -c /home/liyb/mprpc/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_baa31
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_baa31.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_baa31.dir/src.c.o  -o cmTC_baa31 
+/usr/bin/ld: CMakeFiles/cmTC_baa31.dir/src.c.o: in function `main':
 src.c:(.text+0x46): undefined reference to `pthread_create'
 /usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
 /usr/bin/ld: src.c:(.text+0x63): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_a19ed.dir/build.make:87：cmTC_a19ed] 错误 1
+make[1]: *** [CMakeFiles/cmTC_baa31.dir/build.make:87：cmTC_baa31] 错误 1
 make[1]: 离开目录“/home/liyb/mprpc/build/CMakeFiles/CMakeTmp”
-make: *** [Makefile:121：cmTC_a19ed/fast] 错误 2
+make: *** [Makefile:121：cmTC_baa31/fast] 错误 2
 
 
 Source file was:
@@ -41,18 +41,18 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/liyb/mprpc/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_ea6f6/fast && /usr/bin/make -f CMakeFiles/cmTC_ea6f6.dir/build.make CMakeFiles/cmTC_ea6f6.dir/build
+Run Build Command(s):/usr/bin/make cmTC_e9123/fast && /usr/bin/make -f CMakeFiles/cmTC_e9123.dir/build.make CMakeFiles/cmTC_e9123.dir/build
 make[1]: 进入目录“/home/liyb/mprpc/build/CMakeFiles/CMakeTmp”
-Building C object CMakeFiles/cmTC_ea6f6.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_ea6f6.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_ea6f6
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ea6f6.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_ea6f6.dir/CheckFunctionExists.c.o  -o cmTC_ea6f6  -lpthreads 
+Building C object CMakeFiles/cmTC_e9123.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_e9123.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_e9123
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e9123.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_e9123.dir/CheckFunctionExists.c.o  -o cmTC_e9123  -lpthreads 
 /usr/bin/ld: 找不到 -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_ea6f6.dir/build.make:87：cmTC_ea6f6] 错误 1
+make[1]: *** [CMakeFiles/cmTC_e9123.dir/build.make:87：cmTC_e9123] 错误 1
 make[1]: 离开目录“/home/liyb/mprpc/build/CMakeFiles/CMakeTmp”
-make: *** [Makefile:121：cmTC_ea6f6/fast] 错误 2
+make: *** [Makefile:121：cmTC_e9123/fast] 错误 2
 
 
 

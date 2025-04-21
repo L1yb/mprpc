@@ -124,30 +124,43 @@ mprpc/fast:
 .PHONY : mprpc/fast
 
 #=============================================================================
-# Target rules for targets named provider
+# Target rules for targets named providerall
 
 # Build rule for target.
-provider: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 provider
-.PHONY : provider
+providerall: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 providerall
+.PHONY : providerall
 
 # fast build rule for target.
-provider/fast:
-	$(MAKE) -f example/callee/CMakeFiles/provider.dir/build.make example/callee/CMakeFiles/provider.dir/build
-.PHONY : provider/fast
+providerall/fast:
+	$(MAKE) -f example/callee/CMakeFiles/providerall.dir/build.make example/callee/CMakeFiles/providerall.dir/build
+.PHONY : providerall/fast
 
 #=============================================================================
-# Target rules for targets named consumer
+# Target rules for targets named consumer2
 
 # Build rule for target.
-consumer: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 consumer
-.PHONY : consumer
+consumer2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 consumer2
+.PHONY : consumer2
 
 # fast build rule for target.
-consumer/fast:
-	$(MAKE) -f example/caller/CMakeFiles/consumer.dir/build.make example/caller/CMakeFiles/consumer.dir/build
-.PHONY : consumer/fast
+consumer2/fast:
+	$(MAKE) -f example/caller/CMakeFiles/consumer2.dir/build.make example/caller/CMakeFiles/consumer2.dir/build
+.PHONY : consumer2/fast
+
+#=============================================================================
+# Target rules for targets named consumer1
+
+# Build rule for target.
+consumer1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 consumer1
+.PHONY : consumer1
+
+# fast build rule for target.
+consumer1/fast:
+	$(MAKE) -f example/caller/CMakeFiles/consumer1.dir/build.make example/caller/CMakeFiles/consumer1.dir/build
+.PHONY : consumer1/fast
 
 # Help Target
 help:
@@ -158,8 +171,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... mprpc"
-	@echo "... provider"
-	@echo "... consumer"
+	@echo "... providerall"
+	@echo "... consumer2"
+	@echo "... consumer1"
 .PHONY : help
 
 

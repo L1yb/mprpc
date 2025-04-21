@@ -8,7 +8,7 @@
 service_name => service* 服务对象
                     methodCnt =》 方法描述
 
-json: 文本存储 键值对存储除信息外还要存储“键”的信息
+json: 文本存储 键值对存储除信息外还要存储"键"的信息
 protobuf： 二进制存储（效率更高）， 紧密存储只携带数据信息 还提供了service rpc的描述
 */
 // 这里是框架提供给外部使用的，可以发布rpc方法的函数接口
@@ -60,23 +60,33 @@ void RpcProvider::Run()
     // 把rpc节点上要发布的服务全部注册到zk上， 让rpc和client可以在zk上发现服务
     ZkClient zkCli;
     zkCli.Start();
+    
+    LOG_INFO("Starting to register services to ZooKeeper, total services: %lu", m_serviceMap.size());
+    
     for (auto &sp : m_serviceMap)
     {
         std::string service_path = '/' + sp.first;
+        LOG_INFO("Registering service: %s", sp.first.c_str());
         zkCli.Create(service_path.c_str(), nullptr, 0);
+        
+        LOG_INFO("Service %s has %lu methods to register", sp.first.c_str(), sp.second.m_methodMap.size());
+        
         for (auto &mp : sp.second.m_methodMap)
         {
             std::string method_path = service_path + '/' + mp.first;
             char method_path_data[128] = {0};
             sprintf(method_path_data, "%s:%d", ip.c_str(), port);
+            
+            LOG_INFO("Registering method: %s with address: %s", mp.first.c_str(), method_path_data);
+            
             // ZOO_EPHEMERAL表示是临时性节点
             zkCli.Create(method_path.c_str(), method_path_data, strlen(method_path_data), ZOO_EPHEMERAL);
         }
     }
 
-
-    // std::cout << "RpcProvider start service at ip:" << ip << " port:" << port << std::endl;
+    LOG_INFO("All services registered to ZooKeeper successfully");
     LOG_INFO("RpcProvider start service at ip:%s port:%d", ip.c_str(), port);
+    
     // 启动网络服务
     server.start();
     m_eventloop.loop();

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "mprpcapplication.h"
-#include "friend.pb.h"
+#include "all.pb.h"
 #include "logger.h"
 
 int main(int argc, char** argv)

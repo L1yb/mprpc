@@ -12,8 +12,8 @@ public:
     {
         std::cout << "do local service FriendService. getFriendList method" << std::endl;
         std::vector<std::string> friendList;
-        friendList.push_back("hello hello");
-        friendList.push_back("world world");
+        friendList.push_back("hello");
+        friendList.push_back("world");
         return friendList;
     }
 

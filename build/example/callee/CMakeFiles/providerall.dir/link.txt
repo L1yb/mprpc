@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/providerall.dir/allservice.cc.o CMakeFiles/providerall.dir/__/all.pb.cc.o  -o ../../../bin/providerall   -L/home/liyb/mprpc/lib  -Wl,-rpath,/home/liyb/mprpc/lib:/usr/local/lib ../../../lib/libmprpc.a /usr/local/lib/libprotobuf.so -lmuduo_net -lmuduo_base -lpthread -Wl,-Bstatic -lzookeeper_mt -Wl,-Bdynamic -lpthread 

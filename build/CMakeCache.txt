@@ -225,7 +225,7 @@ Protobuf_LITE_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libprotobuf-lite.so
 Protobuf_LITE_LIBRARY_RELEASE:FILEPATH=/usr/local/lib/libprotobuf-lite.so
 
 //The Google Protocol Buffers Compiler
-Protobuf_PROTOC_EXECUTABLE:FILEPATH=/usr/local/bin/protoc
+Protobuf_PROTOC_EXECUTABLE:FILEPATH=/home/liyb/.local/bin/protoc
 
 //Path to a library.
 Protobuf_PROTOC_LIBRARY_DEBUG:FILEPATH=/usr/local/lib/libprotoc.so

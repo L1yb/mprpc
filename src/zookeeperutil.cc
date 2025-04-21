@@ -23,7 +23,12 @@ ZkClient::~ZkClient()
 {
     if (m_zhandle != nullptr)
     {
+        LOG_INFO("Closing ZooKeeper connection");
         zookeeper_close(m_zhandle);
+        m_zhandle = nullptr;
+        // 添加短暂延迟，确保ZooKeeper相关线程有时间清理
+        usleep(100000); // 100ms延迟
+        LOG_INFO("ZooKeeper connection closed");
     }
 }
 // 启动连接 zkserver
@@ -56,6 +61,7 @@ void ZkClient::Start()
     sem_wait(&sem); // 程序阻塞到这里，  sem_post(sem) 得知是否成功
     std::cout << "zookeeper_init success." << std::endl;
     LOG_INFO("zookeeper_init success.");
+    sem_destroy(&sem);
 }
 // 创建节点
 void ZkClient::Create(const char* path, const char* data, int datalen, int state)
@@ -82,22 +88,66 @@ void ZkClient::Create(const char* path, const char* data, int datalen, int state
         }
                 
     }
+    else if (flag == ZOK)
+    {
+        LOG_INFO("znode already exists, skip creation. path: %s", path);
+        
+        // 如果是方法节点（包含临时节点标志），尝试更新数据
+        if (state == ZOO_EPHEMERAL && data != nullptr)
+        {
+            flag = zoo_set(m_zhandle, path, data, datalen, -1);
+            if (flag == ZOK)
+            {
+                LOG_INFO("znode data updated. path: %s", path);
+            }
+            else
+            {
+                LOG_ERR("flag:%d \nznode data update error. path: %s", flag, path);
+            }
+        }
+    }
+    else
+    {
+        LOG_ERR("flag:%d \nzoo_exists error. path: %s", flag, path);
+        exit(EXIT_FAILURE);
+    }
 }
 // 根据参数获取节点数据
 std::string ZkClient::GetData(const char* path)
 {
-    char buffer[64];
+    char buffer[64] = {0};
     int buffer_len = sizeof(buffer);
+    
+    // 先检查节点是否存在
+    int exists_flag = zoo_exists(m_zhandle, path, 0, nullptr);
+    if (exists_flag != ZOK)
+    {
+        LOG_ERR("Node does not exist, path: %s, error code: %d", path, exists_flag);
+        return "";
+    }
+    
     int flag = zoo_get(m_zhandle, path, 0, buffer, &buffer_len, nullptr);
     if (flag != ZOK)
     {
-        LOG_INFO("get znode error. path:%s", path);
+        LOG_ERR("get znode error. path: %s, error code: %d", path, flag);
         return "";
     }
     else
     {
+        LOG_INFO("Got data from znode. path: %s, data: %s", path, buffer);
         return buffer;
     }
-    
-
+}
+// 关闭与ZooKeeper的连接
+void ZkClient::Close()
+{
+    if (m_zhandle != nullptr)
+    {
+        LOG_INFO("Explicitly closing ZooKeeper connection");
+        zookeeper_close(m_zhandle);
+        m_zhandle = nullptr;
+        // 添加短暂延迟，确保ZooKeeper相关线程有时间清理
+        usleep(100000); // 100ms延迟
+        LOG_INFO("ZooKeeper connection explicitly closed");
+    }
 }

@@ -15,6 +15,8 @@ public:
     void Create(const char* path, const char* data, int datalen, int state = 0);
     // 根据参数获取节点数据
     std::string GetData(const char* path);
+    // 关闭与ZooKeeper的连接
+    void Close();
 private:
     // 客户端句柄
     zhandle_t *m_zhandle;
