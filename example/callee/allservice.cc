@@ -105,6 +105,7 @@ int main(int argc, char** argv)
     RpcProvider provider;
     //发布 UserService 服务
     provider.NotifyService(new UserService());
+    
     //发布 FriendService 服务
     provider.NotifyService(new FriendService());
     //运行节点

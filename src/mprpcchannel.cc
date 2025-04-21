@@ -96,7 +96,6 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
         std::string error_msg = method_path + " is not exist!";
         LOG_ERR("ZooKeeper node not found: %s", method_path.c_str());
         controller->SetFailed(error_msg);
-        zkCli.Close(); // 显式关闭ZooKeeper连接
         return;
     }
 
@@ -106,7 +105,6 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
         std::string error_msg = method_path + " address is invalid!";
         LOG_ERR("Invalid address format in ZooKeeper data: %s", host_data.c_str());
         controller->SetFailed(error_msg);
-        zkCli.Close(); // 显式关闭ZooKeeper连接
         return;
     }
 
@@ -114,8 +112,7 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     uint16_t port = atoi(host_data.substr(idx + 1, host_data.size() - idx).c_str());
     LOG_INFO("Found service at address: %s:%d", ip.c_str(), port);
     
-    // 获取完服务信息后立即关闭ZooKeeper连接
-    zkCli.Close();
+
 
     struct sockaddr_in server_addr;
     server_addr.sin_family = AF_INET;
@@ -164,6 +161,4 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
         return;
     }
     close(clientfd);
-    
-    LOG_INFO("RPC call completed successfully");
 }

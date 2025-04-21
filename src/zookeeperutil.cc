@@ -23,12 +23,7 @@ ZkClient::~ZkClient()
 {
     if (m_zhandle != nullptr)
     {
-        LOG_INFO("Closing ZooKeeper connection");
         zookeeper_close(m_zhandle);
-        m_zhandle = nullptr;
-        // 添加短暂延迟，确保ZooKeeper相关线程有时间清理
-        usleep(100000); // 100ms延迟
-        LOG_INFO("ZooKeeper connection closed");
     }
 }
 // 启动连接 zkserver
@@ -136,18 +131,5 @@ std::string ZkClient::GetData(const char* path)
     {
         LOG_INFO("Got data from znode. path: %s, data: %s", path, buffer);
         return buffer;
-    }
-}
-// 关闭与ZooKeeper的连接
-void ZkClient::Close()
-{
-    if (m_zhandle != nullptr)
-    {
-        LOG_INFO("Explicitly closing ZooKeeper connection");
-        zookeeper_close(m_zhandle);
-        m_zhandle = nullptr;
-        // 添加短暂延迟，确保ZooKeeper相关线程有时间清理
-        usleep(100000); // 100ms延迟
-        LOG_INFO("ZooKeeper connection explicitly closed");
     }
 }
